@@ -1,0 +1,8 @@
+[trello api]
+API_KEY = 
+API_SECRET = 
+TOKEN = 
+
+[local config]
+RESULTS_DIR_ROOT = results
+GIT_REPO_URL = 
