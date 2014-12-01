@@ -217,9 +217,13 @@ def dl_card(card, tree_path):
     card_data['comments'] = []
     for comm in card.comments:
         del comm['idMemberCreator']
-        member_info = comm['memberCreator']
-        for key in ('avatarHash', 'fullName', 'initials'):
-            del member_info[key]
+        # This field is no longer returned for deleted accounts.
+        member_info = comm.get('memberCreator')
+        if member_info:
+            for key in ('avatarHash', 'fullName', 'initials'):
+                del member_info[key]
+        else:
+            comm['memberCreator'] = {'username': 'COMPTE SUPPRIME'}
         card_data['comments'].append(comm)
 
     # Grab checklists
